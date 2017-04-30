@@ -64,9 +64,16 @@ class GeoIPDataController extends ControllerBase
 
     $dbPath = drupal_get_path('module', 'geoip_data').'/'.
       \Drupal::config('geoip_data.settings')->get('db_path');
-    if (!is_file($dbPath)) {
+
+    if (!\Drupal::config('geoip_data.settings')->get('db_path')) {
       throw new ConfigException(
         'Path to MaxMind\'s GeoLite2 Country database not defined'
+      );
+    }
+
+    if (!is_file($dbPath)) {
+      throw new ConfigException(
+        'MaxMind\'s GeoLite2 Country database not found. Trying to locate it at '.$dbPath
       );
     }
 
