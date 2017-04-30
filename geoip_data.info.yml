@@ -1,0 +1,8 @@
+name: GeoIP Data
+description: Offers a GeoIP service exposed as a public url
+package: GeoIP
+type: module
+configure: geoip_data.settings
+
+core: 8.x
+version: 1.0

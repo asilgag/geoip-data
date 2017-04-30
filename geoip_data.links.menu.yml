@@ -1,0 +1,5 @@
+geoip_data.settings:
+  title: GeoIP Data
+  parent: system.admin_config_services
+  description: GeoIP Data settings.
+  route_name: geoip_data.settings

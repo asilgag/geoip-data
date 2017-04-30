@@ -1,0 +1,12 @@
+{
+  "name": "asilgag/geoip_data",
+  "description": "Drupal 8 module. Offers a GeoIP service exposed as a public url",
+  "type": "drupal-module",
+  "homepage": "https://twitter.com/asilgag",
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "8.0.x-dev"
+    }
+  }
+}
