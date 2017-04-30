@@ -32,6 +32,13 @@ class GeoipDataSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('db_path'),
     );
 
+    $form['geoip_data_help'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => t('Check if database is correctly installed'),
+      '#description' => t("Try to access <a href=\"/geoip-data/country/json\" target='_blank'><strong>/geoip-data/country/json{/OptionalIP}</strong></a> to check if database is correctly installed"),
+    ];
+
 
     return parent::buildForm($form, $form_state);
   }
