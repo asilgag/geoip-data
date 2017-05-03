@@ -29,13 +29,14 @@ class GeoIPDataController extends ControllerBase
 
       $maxAge = \Drupal::config('system.performance')
         ->get('cache')['page']['max_age'];
-      $dateExpires = new \DateTime("+1 month");
+      $dateExpires = new \DateTime("+".$maxAge." seconds");
 
       return new Response(
         json_encode(
-          ['isoCode' => $record->country->isoCode,
-            'name' => $record->country->name,
-            'names' => $record->country->names,
+          [
+            'isoCode' => !empty($record->country->isoCode) ? $record->country->isoCode : "",
+            'name' => !empty($record->country->name) ? $record->country->name : "",
+            'names' => !empty($record->country->names) ? $record->country->names: "",
           ]
         ),
         200,
@@ -77,11 +78,11 @@ class GeoIPDataController extends ControllerBase
       );
     }
 
+    $record = null;
     $reader = new Reader($dbPath);
     try {
       $record = $reader->country($ip);
-    } catch (\InvalidArgumentException $argumentException){
-      throw new NotFoundHttpException();
+    } catch (\Exception $exception) {
     }
 
     return $record;
